@@ -1,23 +1,43 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
+import {Input} from './input'
 import './App.css';
 
+let letLogin = "dsdfhdfs"
+
 function App() {
+  const [formValues, setFormValues] = useState({});
+
+  const onSubmit = (e) =>{
+    e.preventDefault()
+  }
+
+ 
+
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+
+      <form onSubmit={onSubmit}>
+        <Input 
+        name={'login'}
+        label= {"login"}
+        regex = {/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/}
+        />
+
+        <Input 
+        name={'password'}
+        label= {"Пароль"}
+        regex = {/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/}
+        />
+
+
+
+        <button type='submit' disabled = {!isMatch || !isMatchPassword}>Login</button>
+
+      </form>
     </div>
   );
 }
